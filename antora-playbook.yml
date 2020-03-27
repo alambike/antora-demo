@@ -1,6 +1,6 @@
 site:
   title: Antora Demo Site
-  url: https://my-antora-demo-site.org
+  url: https://alambike.github.io/antora-demo-site
   start_page: component-b::index.adoc
 content:
   sources:

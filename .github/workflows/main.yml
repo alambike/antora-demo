@@ -46,8 +46,8 @@ jobs:
        with:
         REPOSITORY_NAME: alambike/antora-demo-site
         # ACCESS_TOKEN: # optional
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        #GITHUB_TOKEN: "${{ github.token}}"
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN2 }}
+        GITHUB_TOKEN: "${{ github.token}}"
         FOLDER: "${{ env.SITE_DIR }}"
         BRANCH: master
         COMMIT_MESSAGE: "[CI] Publish Documentation for ${{ github.sha }}"

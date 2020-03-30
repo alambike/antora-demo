@@ -42,11 +42,13 @@ jobs:
          name: site
          path: "${{ github.workspace }}/${{ env.SITE_DIR }}"
      - name: Deploy to GitHub Pages
-       uses: JamesIves/github-pages-deploy-action@3.2.1
+       uses: JamesIves/github-pages-deploy-action@releases/v3
        with:
         REPOSITORY_NAME: alambike/antora-demo-site
         # ACCESS_TOKEN: # optional
-        GITHUB_TOKEN: "${{ github.token}}"
+        ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN }}"
+        #GITHUB_TOKEN: "${{ github.token}}"
         FOLDER: "${{ env.SITE_DIR }}"
-        BRANCH: 'master'
+        BRANCH: master
         COMMIT_MESSAGE: "[CI] Publish Documentation for ${{ github.sha }}"
+        DEBUG: true

@@ -6,13 +6,16 @@ on:
       - master
 env:
   SITE_DIR: 'site'
+
 jobs:
+
   build_site:
     name: "Build site with Antora"
     runs-on: [ubuntu-latest]
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+
       - name: "Generate site using antora site action"
         uses: kameshsampath/antora-site-action@v0.2.2
         with:
@@ -35,15 +38,17 @@ jobs:
      #  uses: actions/setup-node@v1.1.0
      #  with:
      #    version: 12.x
-
+  
      - name: Checkout
        uses: actions/checkout@v2
+       with:
+         persist-credentials: false
+
      - name: Download generated site
        uses: actions/download-artifact@v1
        with:
          name: site
          path: "${{ github.workspace }}/${{ env.SITE_DIR }}"
-         persist-credentials: false
 
      - name: Deploy to GitHub Pages
        uses: JamesIves/github-pages-deploy-action@releases/v3
@@ -53,7 +58,7 @@ jobs:
         # ACCESS_TOKEN: # optional
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN2 }}
         #GITHUB_TOKEN: "${{ github.token}}"
+        BRANCH: master
         FOLDER: "${{ env.SITE_DIR }}"
-        BRANCH: docs
         COMMIT_MESSAGE: "[CI] Publish Documentation for ${{ github.sha }}"
         DEBUG: true

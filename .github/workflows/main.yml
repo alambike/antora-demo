@@ -31,10 +31,11 @@ jobs:
     needs: [build_site]
     name: "Deploy GitHub Pages"
     steps:
-     - name: Setup Node.js for use with actions
-       uses: actions/setup-node@v1.1.0
-       with:
-         version: 12.x
+     #- name: Setup Node.js for use with actions
+     #  uses: actions/setup-node@v1.1.0
+     #  with:
+     #    version: 12.x
+
      - name: Checkout
        uses: actions/checkout@v2
      - name: Download generated site
@@ -47,11 +48,12 @@ jobs:
      - name: Deploy to GitHub Pages
        uses: JamesIves/github-pages-deploy-action@releases/v3
        with:
+        GIT_CONFIG_NAME: alambike
         REPOSITORY_NAME: alambike/antora-demo-site
         # ACCESS_TOKEN: # optional
-        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+        ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN2 }}
         #GITHUB_TOKEN: "${{ github.token}}"
         FOLDER: "${{ env.SITE_DIR }}"
-        BRANCH: master
+        BRANCH: docs
         COMMIT_MESSAGE: "[CI] Publish Documentation for ${{ github.sha }}"
         DEBUG: true
